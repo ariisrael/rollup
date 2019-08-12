@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const models = require('./models');
 const uri = 'mongodb+srv://admin:pass@bcbeta-vjzep.mongodb.net/test?retryWrites=true&w=majority';
+const db = {};
 
 function connect() {
   mongoose.connect(uri, { useNewUrlParser: true });
@@ -20,9 +21,12 @@ function handleConnectSuccess() {
 
 function createModels() {
   console.log('Creating models from schemas');
-  models.forEach(m => mongoose.model(m.name, m.schema));
+  models.forEach(m => {
+    const model = mongoose.model(m.name, m.schema);
+    db[m.name] = model;
+  });
 }
 
-module.exports = {
-  connect,
-}
+db.connect = connect;
+
+module.exports = db;

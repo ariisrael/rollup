@@ -1,3 +1,5 @@
+const db = require('../db');
+
 const menuControl = {
   get: (req, res) => {
     const menuId = req.query.id;
@@ -7,21 +9,25 @@ const menuControl = {
     res.send('GET /menu');
   },
   post: (req, res) => {
-    res.send('POST /menu')
+
+    res.send('POST /menu');
   }
 }
 
 const storeControl = {
   get: (req, res) => {
     const storeId = req.query.id;
-
   },
   post: (req, res) => {
-
+    console.log(req.body);
+    db.Store.create(req.body, (err, res) => {
+      if (err) console.log('Error!', err);
+      console.log(res);
+    })
   }
 }
 
-const orgControl = {
+const teamControl = {
   get: (req, res) => {
 
   },
@@ -42,6 +48,6 @@ const userControl = {
 module.exports = {
   menu: menuControl,
   store: storeControl,
-  org: orgControl,
+  team: teamControl,
   user: userControl
 }

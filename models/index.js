@@ -54,8 +54,6 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-
-
 module.exports = [
   {
     name: 'Menu',
