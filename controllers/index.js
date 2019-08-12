@@ -6,23 +6,37 @@ const menuControl = {
     const userId = req.query.user;
     const teamId = req.query.team;
     const storeId = req.query.store;
-    res.send('GET /menu');
+
+    if (!menuId) {
+      db.Menu.find({}, (err, list) => {
+        if (!err) return res.send(list);
+        res.send(500);
+      });
+    }
   },
   post: (req, res) => {
-
-    res.send('POST /menu');
+    db.Menu.create(req.body, (err, msg) => {
+      if (!err) return res.send(200);
+      res.send(500);
+    })
   }
 }
 
 const storeControl = {
   get: (req, res) => {
     const storeId = req.query.id;
+    if (!storeId) {
+      db.Store.find({}, (err, list) => {
+        if (err) return res.send(500);
+        res.send(list);
+      })
+    }
   },
   post: (req, res) => {
     console.log(req.body);
-    db.Store.create(req.body, (err, res) => {
-      if (err) console.log('Error!', err);
-      console.log(res);
+    db.Store.create(req.body, (err, msg) => {
+      if (!err) return res.send(200);
+      res.send(500);
     })
   }
 }
