@@ -9,7 +9,6 @@ const usersRouter = require('./routes/users');
 const apiRouter = require('./routes/api');
 
 const db = require('./db');
-const models = require('./models');
 
 const app = express();
 

@@ -10,11 +10,17 @@ function connect() {
 }
 
 function handleConnectError(msg) {
-  console.log('Error', msg);
+  console.log('Error connecting to db', msg);
 }
 
 function handleConnectSuccess() {
-  console.log('Success');
+  console.log('Successfully connected to db');
+  createModels();
+}
+
+function createModels() {
+  console.log('Creating models from schemas');
+  models.forEach(m => mongoose.model(m.name, m.schema));
 }
 
 module.exports = {

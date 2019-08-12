@@ -56,9 +56,21 @@ const UserSchema = new mongoose.Schema({
 
 
 
-module.exports = {
-  Menu: MenuSchema,
-  Store: StoreSchema,
-  User: UserSchema,
-  Team: TeamSchema
-};
+module.exports = [
+  {
+    name: 'Menu',
+    schema: MenuSchema
+  },
+  {
+    name: 'Store',
+    schema: StoreSchema
+  },
+  {
+    name: 'User',
+    schema: UserSchema
+  },
+  {
+    name: 'Team',
+    schema: TeamSchema
+  }
+]
