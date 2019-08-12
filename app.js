@@ -8,6 +8,9 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const apiRouter = require('./routes/api');
 
+const db = require('./db');
+const models = require('./models');
+
 const app = express();
 
 // view engine setup
@@ -24,6 +27,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 
+db.connect();
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
